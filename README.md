@@ -1,8 +1,8 @@
-# Ablated Virtual Cell (AVC)
+# Elucidating the Design Space of Flow Matching for Cellular Microscopy
 
-AVC is a recipe for training large flow-matching generative transformers on microscopy data. As of 2025, it is the largest generative phenomics model to date, and attains SOTA performance for generating (both seen and unseen) perturbations on the public BBBC021 and RxRx1 benchmarks.
+This repo provides a recipe for training large flow-matching generative transformers on microscopy data. As of early 2026, it is the largest generative phenomics model to date, and attains SOTA performance for generating (both seen and unseen) perturbations on the public BBBC021 and RxRx1 benchmarks.
 
-This repo includes code to train AVC on BBBC021 (including finetuning with Morgan fingerprints for generating unseen compound perturbations). The repo is intended to be minimal so you can copy-paste relevant parts into your own projects.
+This repo includes code to train our MiT (a DiT with modifications to improve stability on microscopy data) on BBBC021 (including finetuning with Morgan fingerprints for generating unseen compound perturbations). The repo is intended to be minimal so you can copy-paste relevant parts into your own projects.
 
 ## Running
 
@@ -43,7 +43,7 @@ If you are on a SLURM cluster, run (from either a login node or an interactive j
 python main.py --launcher.cluster slurm --launcher.gpus 8 --launcher.nodes 2
 ```
 
-This will queue a 16-GPU job, which should reproduce the AVC+One-Hot BBBC021 results for seen compunds.
+This will queue a 16-GPU job, which should reproduce the MiT+One-Hot BBBC021 results for seen compunds.
 
 To finetune with Morgan fingerprint embeddings for unseen compounds, first set the relevant global variables at the top of `finetune.py`, then run:
 ```bash
