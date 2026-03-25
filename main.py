@@ -25,7 +25,7 @@ from utils.name_run import generate_random_name
 logging.basicConfig(level=logging.INFO)
 log = logging.getLogger(__name__)
 
-
+MODEL_NAME = "DiT-XL/2"
 def prng(rank: int, seed: int = 42):
     local_seed = seed + rank
     torch.manual_seed(local_seed)
@@ -62,7 +62,7 @@ def main(config: ornamentalist.ConfigDict):
         prng(D.rank)
         torch.set_float32_matmul_precision("medium")
 
-        model_cls = get_model_cls(name="DiT-XL/2")
+        model_cls = get_model_cls(name=MODEL_NAME)
         net = model_cls(
             in_channels=bbbc021.IMG_CHANNELS,
             input_size=bbbc021.IMG_SIZE,
