@@ -17,6 +17,7 @@ import torch
 import torch.nn as nn
 from timm.models.vision_transformer import Attention, Mlp, PatchEmbed  # type: ignore
 
+from cellflux import ADMWrapper
 
 class ScalarEmbedder(nn.Module):
     """Embeds scalar conditions into vector representations. Useful for timesteps, zoom levels, etc."""
@@ -408,6 +409,7 @@ def get_1d_sincos_pos_embed_from_grid(embed_dim, pos):
 
 def get_model_cls(
     name: Literal[
+        "ADM",
         "DiT-XL/2", "DiT-XL/4", "DiT-XL/8",
         "DiT-L/2", "DiT-L/4", "DiT-L/8",
         "DiT-B/2", "DiT-B/4", "DiT-B/8",
@@ -437,6 +439,8 @@ def get_model_cls(
 
     patch_size = int(patch_size)
     assert patch_size in [2, 4, 8], f"Invalid patch size: {patch_size}"
+    if name == "ADM":
+        return functools.partial(ADMWrapper)
     return functools.partial(
         DiTWrapper,
         depth=depth,
