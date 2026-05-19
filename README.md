@@ -2,6 +2,8 @@
 
 This repo provides a recipe for training large flow-matching generative transformers on microscopy data. As of early 2026, it is the largest generative phenomics model to date, and attains SOTA performance for generating (both seen and unseen) perturbations on the public BBBC021 and RxRx1 benchmarks.
 
+If you find this repo helpful, or would like to build on our methods, please cite our [preprint](https://arxiv.org/abs/2603.26790) :)
+
 This repo includes code to train our MiT (a DiT with modifications to improve stability on microscopy data) on BBBC021 (including finetuning with Morgan fingerprints for generating unseen compound perturbations). The repo is intended to be minimal so you can copy-paste relevant parts into your own projects.
 
 ## Running
